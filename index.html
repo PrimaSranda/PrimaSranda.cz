@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Firemní únikovka</title>
+<meta charset="UTF-8">
+<title>Firemní únikovka</title>
 
-  <style>
-    body {
-      margin: 0;
-      background-color: #111;
-      color: white;
-      text-align: center;
-      font-family: Arial;
-    }
+<style>
+body{
+  margin:0;
+  background: radial-gradient(circle at center, #1a0000 0%, #000000 70%);
+  font-family: Arial, sans-serif;
+  color:white;
+  overflow:hidden;
+}
 
-    .container {
-      margin-top: 60px;
-    }
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
 
-    img {
-      width: 300px;
-      margin-bottom: 40px;
-    }
+.logo{
+  width:75%;
+  max-width:420px;
+  filter: drop-shadow(0 0 20px red);
+  margin-bottom:30px;
+}
 
-    a {
-      display: block;
-      margin: 10px;
-      font-size: 20px;
-      color: white;
-      text-decoration: none;
-    }
-  </style>
+h1{
+  font-size:28px;
+  letter-spacing:2px;
+  text-shadow: 0 0 10px red;
+  margin-bottom:25px;
+}
+
+a{
+  display:block;
+  margin:12px;
+  padding:10px 25px;
+  border:1px solid red;
+  color:white;
+  text-decoration:none;
+  font-size:18px;
+  transition:0.3s;
+}
+
+a:hover{
+  background:red;
+  box-shadow:0 0 15px red;
+}
+</style>
 
 </head>
+
 <body>
 
-<div class="container">
+<div class="wrap">
 
-  <img src="pozadi.png">
+<img class="logo" src="pozadi.png">
 
-  <h1>Firemní únikovka 🔐</h1>
+<h1>VSTUP DO HRY 🔐</h1>
 
-  <a href="start-a.html">Tým Pep</a>
-  <a href="start-b.html">Tým B</a>
-  <a href="start-c.html">Tým C</a>
+<a href="start-a.html">Tým Pep</a>
+<a href="start-b.html">Tým B</a>
+<a href="start-c.html">Tým C</a>
 
 </div>
 
