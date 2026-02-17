@@ -1,1 +1,1 @@
-# .cz
+#PrimaSranda .cz
