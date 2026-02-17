@@ -1,73 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Firemní únikovka</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Firemní únikovka</title>
 
-<style>
-body{
-  margin:0;
-  background: radial-gradient(circle at center, #1a0000 0%, #000000 70%);
-  font-family: Arial, sans-serif;
-  color:white;
-  overflow:hidden;
-}
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      background: radial-gradient(circle at center, #1a0000 0%, #000 70%);
+      font-family: Arial, sans-serif;
+      color:#fff;
+    }
 
-.wrap{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding: 24px 16px;
+      gap: 14px;
 
-.logo{
-  width:75%;
-  max-width:420px;
-  filter: drop-shadow(0 0 20px red);
-  margin-bottom:30px;
-}
+      /* iPhone safe areas (notch) */
+      padding-top: calc(24px + env(safe-area-inset-top));
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
 
-h1{
-  font-size:28px;
-  letter-spacing:2px;
-  text-shadow: 0 0 10px red;
-  margin-bottom:25px;
-}
+    .logo{
+      width: min(78vw, 360px);
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 0 18px rgba(255,0,0,0.85));
+    }
 
-a{
-  display:block;
-  margin:12px;
-  padding:10px 25px;
-  border:1px solid red;
-  color:white;
-  text-decoration:none;
-  font-size:18px;
-  transition:0.3s;
-}
+    h1{
+      margin: 6px 0 6px;
+      font-size: clamp(22px, 5.5vw, 30px);
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 10px rgba(255,0,0,0.75);
+    }
 
-a:hover{
-  background:red;
-  box-shadow:0 0 15px red;
-}
-</style>
+    .btn{
+      width: min(86vw, 340px);
+      display:block;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,0,0,0.9);
+      border-radius: 12px;
+      color:#fff;
+      text-decoration:none;
+      font-size: 18px;
+      background: rgba(0,0,0,0.25);
+      box-shadow: 0 0 14px rgba(255,0,0,0.18);
+    }
 
+    .btn:active{
+      transform: scale(0.98);
+      background: rgba(255,0,0,0.22);
+      box-shadow: 0 0 18px rgba(255,0,0,0.35);
+    }
+
+    .hint{
+      opacity:0.75;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <img class="logo" src="pozadi.png" alt="PRIMASRANDA">
+    <h1>VSTUP DO HRY 🔐</h1>
 
-<div class="wrap">
+    <a class="btn" href="start-a.html">Tým Pep</a>
+    <a class="btn" href="start-b.html">Tým B</a>
+    <a class="btn" href="start-c.html">Tým C</a>
 
-<img class="logo" src="pozadi.png">
-
-<h1>VSTUP DO HRY 🔐</h1>
-
-<a href="start-a.html">Tým Pep</a>
-<a href="start-b.html">Tým B</a>
-<a href="start-c.html">Tým C</a>
-
-</div>
-
+    <div class="hint">Naskenuj QR → vyber tým → začni misi</div>
+  </div>
 </body>
 </html>
