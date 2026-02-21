@@ -169,7 +169,8 @@ function normalize(text){
 /* SCORE */
 function updateScoreDisplay(){
   const score = localStorage.getItem("score") || 0;
-  document.getElementById("scoreBox").innerText = "Body: " + score;
+  const box = document.getElementById("scoreBox");
+  if (box) box.innerText = "Body: " + score;
 }
 
 function addPoints(points){
@@ -220,13 +221,13 @@ function check(){
   }
 }
 
- function nextHint(){
+function nextHint(){
   const box = document.getElementById("hintBox");
   box.style.display = "block";
 
-  // odečti bod jen když se poprvé odhalí hint 1 nebo hint 2
+  // odečti bod HNED jen při odhalení nové nápovědy (1 nebo 2)
   if(hintStep === 0 || hintStep === 1){
-    subtractPoint();          // -1 bod HNED
+    subtractPoint();
   }
 
   if(hintStep === 0){
@@ -244,14 +245,6 @@ function check(){
 document.getElementById("heslo").addEventListener("keydown", function(e){
   if(e.key === "Enter") check();
 });
-</script>
-  <script>
-localStorage.setItem("score", 99); // TEST - po ověření smaž
-function updateScoreDisplay(){
-  const score = localStorage.getItem("score") || 0;
-  document.getElementById("scoreBox").innerText = "Body: " + score;
-}
-updateScoreDisplay();
 </script>
 
 </body>
