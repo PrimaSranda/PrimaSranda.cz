@@ -243,6 +243,14 @@ document.getElementById("heslo").addEventListener("keydown", function(e){
   if(e.key === "Enter") check();
 });
 </script>
+  <script>
+localStorage.setItem("score", 99); // TEST - po ověření smaž
+function updateScoreDisplay(){
+  const score = localStorage.getItem("score") || 0;
+  document.getElementById("scoreBox").innerText = "Body: " + score;
+}
+updateScoreDisplay();
+</script>
 
 </body>
 </html>
