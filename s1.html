@@ -60,7 +60,24 @@ button{
   font-size:16px;
   cursor:pointer;
 }
-
+.btn2{
+  margin-top:10px;
+  padding:12px 18px;
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,.6);
+  background:rgba(255,0,0,.12);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+.hintBox{
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  border:1px dashed rgba(255,0,0,.5);
+  background:rgba(0,0,0,.35);
+  text-align:left;
+}
 #msg{
   margin-top:12px;
   font-weight:bold;
@@ -83,6 +100,8 @@ Kolik je tam kulatých stolů?
 
 <input type="text" id="heslo" placeholder="Zadejte heslo">
 <button onclick="check()">Odeslat</button>
+  <button class="btn2" onclick="showHint()">Nápověda</button>
+<div id="hintBox" class="hintBox" style="display:none;"></div>
 
 <div id="msg"></div>
 </div>
@@ -97,6 +116,22 @@ function check(){
     window.location.href = "s2.html";
   } else {
     document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
+  }
+}
+  let hintStep = 0;
+
+function nextHint(){
+  const box = document.getElementById("hintBox");
+  box.style.display = "block";
+
+  if(hintStep === 0){
+    box.innerHTML = "💡 Nápověda 1: Hledejte něco červeného poblíž.";
+    hintStep++;
+  } else if(hintStep === 1){
+    box.innerHTML = "💡 Nápověda 2: Je to na levé straně u vchodu.";
+    hintStep++;
+  } else {
+    box.innerHTML = "✅ Víc nápověd není 😈";
   }
 }
 </script>
