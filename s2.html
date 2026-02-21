@@ -25,6 +25,16 @@ body{
   gap:16px;
 }
 
+#scoreBox{
+  font-weight:800;
+  margin-bottom:6px;
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,.45);
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 0 14px rgba(255,0,0,.12);
+}
+
 .logo{
   width:min(70vw,320px);
   height:auto;
@@ -32,40 +42,32 @@ body{
 }
 
 h2{
-  margin: 0 0 6px 0;
-  font-size: 28px;
+  margin:0;
+  font-size:28px;
   text-shadow: 0 0 10px rgba(255,0,0,.6);
 }
 
 .photo{
-  width: min(92vw, 560px);
-  height: auto;
-  border-radius: 14px;
-  border: 1px solid rgba(255,0,0,.55);
-  box-shadow: 0 0 22px rgba(255,0,0,.25);
-  background: rgba(0,0,0,.25);
+  width:min(92vw,560px);
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.55);
+  box-shadow:0 0 22px rgba(255,0,0,.25);
 }
 
-.btn{
-  width: min(86vw, 340px);
-  padding: 16px 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,0,0,.9);
-  background: red;
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
+button{
+  padding:16px 28px;
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.9);
+  background:red;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
   box-shadow: 0 0 18px rgba(255,0,0,.25);
 }
 
-.btn:active{
-  transform: scale(0.98);
-}
-.small{
-  opacity:.75;
-  font-size: 13px;
-  margin-top: -6px;
+button:active{
+  transform:scale(0.98);
 }
 </style>
 </head>
@@ -73,16 +75,30 @@ h2{
 <body>
 
 <div class="wrap">
-  <img class="logo" src="bezpozadi.png" alt="PRIMASRANDA">
+
+  <div id="scoreBox">Body: 0</div>
+
+  <img class="logo" src="bezpozadi.png" alt="Logo">
 
   <h2>Druhé stanoviště</h2>
-  <div class="small">Dojděte na místo podle fotky</div>
 
-  <!-- POZOR: název souboru musí sedět přesně -->
-  <img class="photo" src="mistos2.jpeg" alt="Místo stanoviště 2">
+  <!-- ZMĚŇ NÁZEV podle skutečného souboru -->
+  <img class="photo" src="mistos2.jpeg" alt="Místo stanoviště">
 
-  <button class="btn" onclick="location.href='s3.html'">JSEM NA MÍSTĚ</button>
+  <button onclick="location.href='s3.html'">
+    JSEM NA MÍSTĚ
+  </button>
+
 </div>
+
+<script>
+function updateScoreDisplay(){
+  const score = localStorage.getItem("score") || 0;
+  document.getElementById("scoreBox").innerText = "Body: " + score;
+}
+
+updateScoreDisplay();
+</script>
 
 </body>
 </html>
