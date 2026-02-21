@@ -220,12 +220,14 @@ function check(){
   }
 }
 
-function nextHint(){
+ function nextHint(){
   const box = document.getElementById("hintBox");
   box.style.display = "block";
 
-  // -1 bod jen když se odhalí nová nápověda (max 2x)
-  if(hintStep <= 1) subtractPoint();
+  // odečti bod jen když se poprvé odhalí hint 1 nebo hint 2
+  if(hintStep === 0 || hintStep === 1){
+    subtractPoint();          // -1 bod HNED
+  }
 
   if(hintStep === 0){
     box.innerHTML = "💡 Nápověda 1: Hledejte něco červeného poblíž.";
