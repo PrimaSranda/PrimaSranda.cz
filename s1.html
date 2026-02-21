@@ -34,6 +34,9 @@ body{
   text-align:center;
   padding:24px 16px;
   gap:14px;
+  <div id="scoreBox" style="font-weight:bold; margin-bottom:10px;">
+  Body: 0
+</div>
 }
 
 .logo{
@@ -204,6 +207,29 @@ function nextHint(){
 document.getElementById("heslo").addEventListener("keydown", function(e){
   if(e.key === "Enter") check();
 });
+</script>
+
+function updateScoreDisplay(){
+  let score = localStorage.getItem("score") || 0;
+  document.getElementById("scoreBox").innerText = "Body: " + score;
+}
+
+function addPoints(points){
+  let score = parseInt(localStorage.getItem("score")) || 0;
+  score += 4points;
+  localStorage.setItem("score", score);
+  updateScoreDisplay();
+}
+
+function subtractPoint(){
+  let score = parseInt(localStorage.getItem("score")) || 0;
+  score = Math.max(0, score - 1);
+  localStorage.setItem("score", score);
+  updateScoreDisplay();
+}
+
+updateScoreDisplay();
+
 </script>
 
 </body>
