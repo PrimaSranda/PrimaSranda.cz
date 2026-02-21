@@ -36,7 +36,6 @@ body{
   gap:14px;
 }
 
-
 .logo{
   width:min(70vw,320px);
   height:auto;
@@ -120,31 +119,31 @@ button{
 
 <body>
 
+<!-- sem patří failScreen (HTML), ne do <style> -->
 <div id="failScreen">
-  <img src="spatnyheslo3.png" alt="Špatný heslo, břídilové">
+  <img src="spatneheslo.png" alt="Špatný heslo, břídilové">
 </div>
 
 <div class="wrap">
 
+<img class="logo" src="bezpozadi.png" alt="Logo">
 
-  <img class="logo" src="bezpozadi.png" alt="Logo">
+<div class="card">
+<h2>První hádanka, troufáte si?</h2>
 
-  <div class="card">
-    <h2>První hádanka, troufáte si?</h2>
+<p>
+Najděte místo, kde se vaří nejlepší káva.<br>
+Kolik je tam kulatých stolů?
+</p>
 
-    <p>
-      Najděte místo, kde se vaří nejlepší káva.<br>
-      Kolik je tam kulatých stolů?
-    </p>
+<input type="text" id="heslo" placeholder="Zadejte heslo">
+<button onclick="check()">Odeslat</button>
 
-    <input type="text" id="heslo" placeholder="Zadejte heslo">
-    <button onclick="check()">Odeslat</button>
+<button class="btn2" onclick="nextHint()">Nápověda</button>
+<div id="hintBox" class="hintBox"></div>
 
-    <button class="btn2" onclick="nextHint()">Nápověda</button>
-    <div id="hintBox" class="hintBox"></div>
-
-    <div id="msg"></div>
-  </div>
+<div id="msg"></div>
+</div>
 
 </div>
 
@@ -156,8 +155,6 @@ function normalize(text){
   return (text || "").toLowerCase().trim();
 }
 
-
-/* FX */
 function triggerShake(){
   document.body.classList.add("shake");
   setTimeout(() => document.body.classList.remove("shake"), 400);
@@ -169,16 +166,15 @@ function showFail(){
   setTimeout(() => { screen.style.display = "none"; }, 2000);
 }
 
-/* GAME */
 function check(){
   const val = normalize(document.getElementById("heslo").value);
 
-  if(val === "4"){           // správné heslo
-    addPoints(4);            // +4 body
+  if(val === "4"){ // <-- sem dej správné heslo
     window.location.href = "s2.html";
     return;
   }
 
+  // špatně:
   wrongAttempts++;
   document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
   triggerShake();
@@ -192,11 +188,6 @@ function check(){
 function nextHint(){
   const box = document.getElementById("hintBox");
   box.style.display = "block";
-
-  // odečti bod HNED jen při odhalení nové nápovědy (1 nebo 2)
-  if(hintStep === 0 || hintStep === 1){
-    subtractPoint();
-  }
 
   if(hintStep === 0){
     box.innerHTML = "💡 Nápověda 1: Hledejte něco červeného poblíž.";
