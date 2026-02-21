@@ -60,7 +60,9 @@ h1{
   box-shadow:0 0 18px rgba(255,0,0,.3);
 }
 
-.btn:active{ transform:scale(0.97); }
+.btn:active{
+  transform:scale(0.97);
+}
 
 /* KONFETY */
 .confetti{
@@ -84,6 +86,7 @@ h1{
 <body>
 
 <div class="wrap">
+
   <img class="logo" src="bezpozadi.png" alt="Logo">
 
   <div class="card">
@@ -91,7 +94,6 @@ h1{
     <p><strong>Zjistili jste poslední destinaci!</strong></p>
     <p>
       Vaše finální zastávka je:<br><br>
-
       <strong>(Sem napiš konkrétní místo)</strong>
     </p>
   </div>
@@ -99,6 +101,11 @@ h1{
   <button class="btn" onclick="location.href='index.html'">
     Zpět na začátek
   </button>
+
+  <button class="btn" onclick="location.href='s5.html'">
+    Klikněte, až budete na místě
+  </button>
+
 </div>
 
 <script>
@@ -120,11 +127,6 @@ function createConfetti(){
 for(let i=0;i<120;i++){
   setTimeout(createConfetti, i * 50);
 }
-
-   <button onclick="location.href='s5.html'">
-   Klikněte, až budete na místě
-  </button>
-  
 </script>
 
 </body>
