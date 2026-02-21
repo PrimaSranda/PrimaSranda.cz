@@ -34,9 +34,16 @@ body{
   text-align:center;
   padding:24px 16px;
   gap:14px;
-  <div id="scoreBox" style="font-weight:bold; margin-bottom:10px;">
-  Body: 0
-</div>
+}
+
+#scoreBox{
+  font-weight:800;
+  margin-bottom:6px;
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,.45);
+  background: rgba(0,0,0,.25);
+  box-shadow: 0 0 14px rgba(255,0,0,.12);
 }
 
 .logo{
@@ -122,31 +129,32 @@ button{
 
 <body>
 
-<!-- sem patří failScreen (HTML), ne do <style> -->
 <div id="failScreen">
   <img src="spatnyheslo3.png" alt="Špatný heslo, břídilové">
 </div>
 
 <div class="wrap">
 
-<img class="logo" src="bezpozadi.png" alt="Logo">
+  <div id="scoreBox">Body: 0</div>
 
-<div class="card">
-<h2>První hádanka, troufáte si?</h2>
+  <img class="logo" src="bezpozadi.png" alt="Logo">
 
-<p>
-Najděte místo, kde se vaří nejlepší káva.<br>
-Kolik je tam kulatých stolů?
-</p>
+  <div class="card">
+    <h2>První hádanka, troufáte si?</h2>
 
-<input type="text" id="heslo" placeholder="Zadejte heslo">
-<button onclick="check()">Odeslat</button>
+    <p>
+      Najděte místo, kde se vaří nejlepší káva.<br>
+      Kolik je tam kulatých stolů?
+    </p>
 
-<button class="btn2" onclick="nextHint()">Nápověda</button>
-<div id="hintBox" class="hintBox"></div>
+    <input type="text" id="heslo" placeholder="Zadejte heslo">
+    <button onclick="check()">Odeslat</button>
 
-<div id="msg"></div>
-</div>
+    <button class="btn2" onclick="nextHint()">Nápověda</button>
+    <div id="hintBox" class="hintBox"></div>
+
+    <div id="msg"></div>
+  </div>
 
 </div>
 
@@ -158,6 +166,29 @@ function normalize(text){
   return (text || "").toLowerCase().trim();
 }
 
+/* SCORE */
+function updateScoreDisplay(){
+  const score = localStorage.getItem("score") || 0;
+  document.getElementById("scoreBox").innerText = "Body: " + score;
+}
+
+function addPoints(points){
+  let score = parseInt(localStorage.getItem("score")) || 0;
+  score += points; // +4
+  localStorage.setItem("score", score);
+  updateScoreDisplay();
+}
+
+function subtractPoint(){
+  let score = parseInt(localStorage.getItem("score")) || 0;
+  score = Math.max(0, score - 1); // -1
+  localStorage.setItem("score", score);
+  updateScoreDisplay();
+}
+
+updateScoreDisplay();
+
+/* FX */
 function triggerShake(){
   document.body.classList.add("shake");
   setTimeout(() => document.body.classList.remove("shake"), 400);
@@ -169,15 +200,16 @@ function showFail(){
   setTimeout(() => { screen.style.display = "none"; }, 2000);
 }
 
+/* GAME */
 function check(){
   const val = normalize(document.getElementById("heslo").value);
 
-  if(val === "4"){ // <-- sem dej správné heslo
+  if(val === "4"){           // správné heslo
+    addPoints(4);            // +4 body
     window.location.href = "s2.html";
     return;
   }
 
-  // špatně:
   wrongAttempts++;
   document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
   triggerShake();
@@ -191,6 +223,9 @@ function check(){
 function nextHint(){
   const box = document.getElementById("hintBox");
   box.style.display = "block";
+
+  // -1 bod jen když se odhalí nová nápověda (max 2x)
+  if(hintStep <= 1) subtractPoint();
 
   if(hintStep === 0){
     box.innerHTML = "💡 Nápověda 1: Hledejte něco červeného poblíž.";
@@ -207,29 +242,6 @@ function nextHint(){
 document.getElementById("heslo").addEventListener("keydown", function(e){
   if(e.key === "Enter") check();
 });
-</script>
-
-function updateScoreDisplay(){
-  let score = localStorage.getItem("score") || 0;
-  document.getElementById("scoreBox").innerText = "Body: " + score;
-}
-
-function addPoints(points){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score += 4points;
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-function subtractPoint(){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score = Math.max(0, score - 1);
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-updateScoreDisplay();
-
 </script>
 
 </body>
