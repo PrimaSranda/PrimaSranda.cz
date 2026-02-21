@@ -13,7 +13,32 @@ body{
   font-family: Arial, sans-serif;
   color:#fff;
 }
+  <div id="failScreen" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+justify-content:center;
+align-items:center;
+z-index:9999;
+">
+  <img src="spatneheslo.png" style="max-width:90%; max-height:90%;">
+</div>
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 5px); }
+  40% { transform: translate(8px, -5px); }
+  60% { transform: translate(-8px, 5px); }
+  80% { transform: translate(8px, -5px); }
+  100% { transform: translate(0, 0); }
+}
 
+.shake {
+  animation: shake 0.4s;
+}
 .wrap{
   min-height:100vh;
   display:flex;
@@ -125,11 +150,19 @@ function normalize(text){
 function check(){
   let val = normalize(document.getElementById("heslo").value);
 
-  if(val === "4"){   // ← ZDE změň správné heslo
+  if(val === "4"){   // 
     window.location.href = "s2.html";
+    function showFail(){
+  const screen = document.getElementById("failScreen");
+  screen.style.display = "flex";
+
+  setTimeout(() => {
+    screen.style.display = "none";
+  }, 2000); // 2 sekundy
+}
   } else {
-    wrongAttempts++;
-    document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
+  showFail();
+}
 
     // Po 2 špatných pokusech nabídne nápovědu
     if(wrongAttempts >= 2){
