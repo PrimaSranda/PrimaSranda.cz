@@ -36,15 +36,6 @@ body{
   gap:14px;
 }
 
-#scoreBox{
-  font-weight:800;
-  margin-bottom:6px;
-  padding:8px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,0,0,.45);
-  background: rgba(0,0,0,.25);
-  box-shadow: 0 0 14px rgba(255,0,0,.12);
-}
 
 .logo{
   width:min(70vw,320px);
@@ -135,7 +126,6 @@ button{
 
 <div class="wrap">
 
-  <div id="scoreBox">Body: 0</div>
 
   <img class="logo" src="bezpozadi.png" alt="Logo">
 
@@ -166,28 +156,6 @@ function normalize(text){
   return (text || "").toLowerCase().trim();
 }
 
-/* SCORE */
-function updateScoreDisplay(){
-  const score = localStorage.getItem("score") || 0;
-  const box = document.getElementById("scoreBox");
-  if (box) box.innerText = "Body: " + score;
-}
-
-function addPoints(points){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score += points; // +4
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-function subtractPoint(){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score = Math.max(0, score - 1); // -1
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-updateScoreDisplay();
 
 /* FX */
 function triggerShake(){
