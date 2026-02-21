@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>První hádanka, troufáte si?</title>
+<title>Třetí stanoviště</title>
 
 <style>
 body{
@@ -34,16 +34,6 @@ body{
   text-align:center;
   padding:24px 16px;
   gap:14px;
-}
-
-#scoreBox{
-  font-weight:800;
-  margin-bottom:6px;
-  padding:8px 12px;
-  border-radius:12px;
-  border:1px solid rgba(255,0,0,.45);
-  background: rgba(0,0,0,.25);
-  box-shadow: 0 0 14px rgba(255,0,0,.12);
 }
 
 .logo{
@@ -109,7 +99,7 @@ button{
   font-weight:bold;
 }
 
-/* fail overlay (obrázek přes celou obrazovku) */
+/* fail overlay */
 #failScreen{
   display:none;
   position:fixed;
@@ -130,21 +120,17 @@ button{
 <body>
 
 <div id="failScreen">
-  <img src="spatnyheslo3.png" alt="Špatný heslo, břídilové">
+  <img src="spatnyheslo3.png" alt="Špatný heslo">
 </div>
 
 <div class="wrap">
 
-  <div id="scoreBox">Body: 0</div>
-
   <img class="logo" src="bezpozadi.png" alt="Logo">
 
   <div class="card">
-    <h2>Tady si trochu pochutnbáte!!</h2>
+    <h2>Tady si trochu pochutnáte!!</h2>
 
-    <p>
-      Jaká je to příchuť????
-    </p>
+    <p>Jaká je to příchuť????</p>
 
     <input type="text" id="heslo" placeholder="Zadejte heslo">
     <button onclick="check()">Odeslat</button>
@@ -165,30 +151,6 @@ function normalize(text){
   return (text || "").toLowerCase().trim();
 }
 
-/* SCORE */
-function updateScoreDisplay(){
-  const score = localStorage.getItem("score") || 0;
-  const box = document.getElementById("scoreBox");
-  if (box) box.innerText = "Body: " + score;
-}
-
-function addPoints(points){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score += points; // +4
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-function subtractPoint(){
-  let score = parseInt(localStorage.getItem("score")) || 0;
-  score = Math.max(0, score - 1); // -1
-  localStorage.setItem("score", score);
-  updateScoreDisplay();
-}
-
-updateScoreDisplay();
-
-/* FX */
 function triggerShake(){
   document.body.classList.add("shake");
   setTimeout(() => document.body.classList.remove("shake"), 400);
@@ -200,13 +162,11 @@ function showFail(){
   setTimeout(() => { screen.style.display = "none"; }, 2000);
 }
 
-/* GAME */
 function check(){
   const val = normalize(document.getElementById("heslo").value);
 
-  if(val === "cesnek"){           // správné heslo
-    addPoints(4);            // +4 body
-    window.location.href = "s2.html";
+  if(val === "cesnek"){  
+    window.location.href = "s4.html";  // další stanoviště
     return;
   }
 
@@ -224,21 +184,16 @@ function nextHint(){
   const box = document.getElementById("hintBox");
   box.style.display = "block";
 
-  // odečti bod HNED jen při odhalení nové nápovědy (1 nebo 2)
-  if(hintStep === 0 || hintStep === 1){
-    subtractPoint();
-  }
-
   if(hintStep === 0){
     box.innerHTML = "💡 Nápověda 1: Upíři se toho bojí.";
     hintStep++;
   } else if(hintStep === 1){
     box.innerHTML = "💡 Nápověda 2: Je to velmi používané koření.";
     hintStep++;
-     else if(hintStep === 2){
+  } else if(hintStep === 2){
     box.innerHTML = "💡 Nápověda 3: Před poradou si to asi nedáte.";
     hintStep++;
-      } else {
+  } else {
     box.innerHTML = "😈 Víc nápověd není.";
   }
 }
