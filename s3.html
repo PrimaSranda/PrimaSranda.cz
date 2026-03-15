@@ -128,14 +128,16 @@ button{
   <img class="logo" src="bezpozadi.png" alt="Logo">
 
   <div class="card">
-    <h2>Tady si trochu pochutnáte!!</h2>
+    <h2>Čtení hieroglyfů'</h2>
 
-    <p>Jaká je to příchuť????</p>
+    <p>Doplnění moudra z místního umění vám cestu jistí:<br>
+    ,,Stop předsudkům a nenávisti....</b> <br>
+    </p>
 
     <input type="text" id="heslo" placeholder="Zadejte heslo">
     <button onclick="check()">Odeslat</button>
 
-    <button class="btn2" onclick="nextHint()">Nápověda</button>
+    <button class="btn2" onclick="nextHint()">V případě intelektuální kolapsu</button>
     <div id="hintBox" class="hintBox"></div>
 
     <div id="msg"></div>
@@ -165,7 +167,7 @@ function showFail(){
 function check(){
   const val = normalize(document.getElementById("heslo").value);
 
-  if(val === "cesnek"){  
+  if(val === "vsichni mame stejnou krev"){  
     window.location.href = "s4.html";  // další stanoviště
     return;
   }
@@ -185,13 +187,10 @@ function nextHint(){
   box.style.display = "block";
 
   if(hintStep === 0){
-    box.innerHTML = "💡 Nápověda 1: Upíři se toho bojí.";
+    box.innerHTML = "💡 Nápověda 1: Podívejte se pořádně kolem sebe.";
     hintStep++;
   } else if(hintStep === 1){
-    box.innerHTML = "💡 Nápověda 2: Je to velmi používané koření.";
-    hintStep++;
-  } else if(hintStep === 2){
-    box.innerHTML = "💡 Nápověda 3: Před poradou si to asi nedáte.";
+    box.innerHTML = "💡 Nápověda 2: Co se píše na zdi?";
     hintStep++;
   } else {
     box.innerHTML = "😈 Víc nápověd není.";
