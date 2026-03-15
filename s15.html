@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Druhé stanoviště</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background: radial-gradient(circle at center, #1a0000 0%, #000 70%);
+  font-family: Arial, sans-serif;
+  color:#fff;
+}
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:24px 16px;
+  gap:16px;
+}
+
+.logo{
+  width:min(70vw,320px);
+  height:auto;
+  filter:drop-shadow(0 0 20px rgba(255,0,0,.9));
+}
+
+h2{
+  margin:0;
+  font-size:28px;
+  text-shadow:0 0 10px rgba(255,0,0,.6);
+}
+
+.small{
+  opacity:.9;
+  font-size:16px;   /* větší a normální text */
+}
+
+/* QR obrázek */
+.photo{
+  width:min(92vw,560px);
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.55);
+  box-shadow:0 0 22px rgba(255,0,0,.25);
+}
+
+/* MALÝ GIF */
+.gif{
+  width:120px;
+  margin-top:10px;
+}
+
+/* tlačítko */
+.btn{
+  width:min(86vw,340px);
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.9);
+  background:red;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(255,0,0,.25);
+}
+
+.btn:active{
+  transform:scale(0.98);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<img class="logo" src="bezpozadi.png" alt="PRIMASRANDA">
+
+<h2>Správně!</h2>
+
+<div class="small">
+Jste šikovní, počítat umíte,<br>
+  nic není tak, jak si myslíte!<br>
+  Počet schodů zapomenout můžete,<br>
+  číslo lampy, kde stojí, potřebujete.<br>
+</div>
+
+  <!-- MALÝ GIF -->
+<img class="gif" src="Good Boy Gif.gif">
+
+<div class="small">
+Jako i my dvě jsme velké pražské náplavy,<br>
+  stejně tak se nazývá i břeh Vltavy!<br>
+ Kam kolem čísel - 202532 - 202468 - 201822 - 201821 - vás cesta dolů pod železnici povede bez obavy,<br>
+  vaším cílem je nyní tunel tmavy!<br>
+</div>
+  
+<!-- QR -->
+<img class="photo" src="zelmost.jpg">
+
+
+
+<button class="btn" onclick="location.href='s16.html'">
+Jsem v tunelu!
+</button>
+
+</div>
+
+</body>
+</html>
