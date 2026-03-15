@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,35 +37,62 @@ h2{
   text-shadow: 0 0 10px rgba(255,0,0,.6);
 }
 
-.photo{
-  width: min(92vw, 560px);
-  height: auto;
-  border-radius: 14px;
-  border: 1px solid rgba(255,0,0,.55);
-  box-shadow: 0 0 22px rgba(255,0,0,.25);
-  background: rgba(0,0,0,.25);
-}
-
-.btn{
-  width: min(86vw, 340px);
-  padding: 16px 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,0,0,.9);
-  background: red;
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 0 18px rgba(255,0,0,.25);
-}
-
-.btn:active{
-  transform: scale(0.98);
-}
 .small{
   opacity:.75;
   font-size: 13px;
-  margin-top: -6px;
+}
+
+/* KONTEJNER NA 2 OBRÁZKY */
+.photos{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.photo{
+  width:min(42vw,260px);
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.55);
+  box-shadow:0 0 22px rgba(255,0,0,.25);
+}
+
+/* BUTTON */
+.btn{
+  width:min(86vw,340px);
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.9);
+  background:red;
+  color:white;
+  font-size:18px;
+  font-weight:700;
+  cursor:pointer;
+  box-shadow:0 0 18px rgba(255,0,0,.25);
+}
+
+.btn:active{
+  transform:scale(0.98);
+}
+
+/* QR POPUP */
+#qrPopup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+#qrPopup img{
+  width:220px;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(255,0,0,.6);
 }
 </style>
 </head>
@@ -74,16 +100,42 @@ h2{
 <body>
 
 <div class="wrap">
-  <img class="logo" src="bezpozadi.png" alt="PRIMASRANDA">
 
-  <h2>Druhé stanoviště</h2>
-  <div class="small">Dojděte na místo podle fotky</div>
+<img class="logo" src="bezpozadi.png">
 
-  <!-- POZOR: název souboru musí sedět přesně -->
-  <img class="photo" src="mistos2.jpeg" alt="Místo stanoviště 2">
+<h2>Druhé stanoviště</h2>
+<div class="small">Dojděte na místo podle fotky</div>
 
-  <button class="btn" onclick="location.href='s3.html'">JSEM NA MÍSTĚ</button>
+<!-- 2 OBRÁZKY VEDLE SEBE -->
+<div class="photos">
+  <img class="photo" src="Nuselak.jpg">
+  <img class="photo" src="Nuselak2.jpg">
 </div>
+
+<button class="btn" onclick="location.href='s3.html'">
+JSEM NA MÍSTĚ
+</button>
+
+<button class="btn" onclick="showQR()">
+NÁPOVĚDA
+</button>
+
+</div>
+
+<!-- QR POPUP -->
+<div id="qrPopup" onclick="hideQR()">
+<img src="qr.png">
+</div>
+
+<script>
+function showQR(){
+  document.getElementById("qrPopup").style.display="flex";
+}
+
+function hideQR(){
+  document.getElementById("qrPopup").style.display="none";
+}
+</script>
 
 </body>
 </html>
