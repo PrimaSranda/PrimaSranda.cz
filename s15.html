@@ -38,25 +38,30 @@ h2{
 }
 
 .small{
-  opacity:.9;
-  font-size:16px;   /* větší a normální text */
+  opacity:.95;
+  font-size:16px;
+  line-height:1.4;
+  max-width: min(92vw, 560px);
 }
 
-/* QR obrázek */
 .photo{
   width:min(92vw,560px);
+  height:auto;
   border-radius:14px;
   border:1px solid rgba(255,0,0,.55);
   box-shadow:0 0 22px rgba(255,0,0,.25);
+  display:block;
 }
 
-/* MALÝ GIF */
 .gif{
-  width:120px;
-  margin-top:10px;
+  width:min(92vw,560px);
+  height:auto;
+  border-radius:14px;
+  border:1px solid rgba(255,0,0,.55);
+  box-shadow:0 0 22px rgba(255,0,0,.25);
+  display:block;
 }
 
-/* tlačítko */
 .btn{
   width:min(86vw,340px);
   padding:16px 18px;
@@ -80,35 +85,31 @@ h2{
 
 <div class="wrap">
 
-<img class="logo" src="bezpozadi.png" alt="PRIMASRANDA">
+  <img class="logo" src="bezpozadi.png" alt="PRIMASRANDA">
 
-<h2>Správně!</h2>
+  <h2>Správně!</h2>
 
-<div class="small">
-Jste šikovní, počítat umíte,<br>
-  nic není tak, jak si myslíte!<br>
-  Počet schodů zapomenout můžete,<br>
-  číslo lampy, kde stojí, potřebujete.<br>
-</div>
+  <div class="small">
+    Jste šikovní, počítat umíte,<br>
+    nic není tak, jak si myslíte!<br>
+    Počet schodů zapomenout můžete,<br>
+    číslo lampy, kde stojí, potřebujete.<br>
+  </div>
 
-  <!-- MALÝ GIF -->
-<img class="gif" src="Good Boy GIF.gif">
+  <img class="gif" src="Good Boy GIF.gif" alt="Good boy gif">
 
-<div class="small">
-Jako i my dvě jsme velké pražské náplavy,<br>
-  stejně tak se nazývá i břeh Vltavy!<br>
- Kam kolem čísel - 202532 - 202468 - 201822 - 201821 - vás cesta dolů pod železnici povede bez obavy,<br>
-  vaším cílem je nyní tunel tmavy!<br>
-</div>
-  
-<!-- QR -->
-<img class="photo" src="zelmost.jpg">
+  <div class="small">
+    Jako i my dvě jsme velké pražské náplavy,<br>
+    stejně tak se nazývá i břeh Vltavy!<br>
+    Kam kolem čísel 202532, 202468, 201822, 201821 vás cesta dolů pod železnici povede bez obavy,<br>
+    vaším cílem je nyní tunel tmavý!<br>
+  </div>
 
+  <img class="photo" src="zelmost.jpg" alt="Tunel a most">
 
-
-<button class="btn" onclick="location.href='s16.html'">
-Jsem v tunelu!
-</button>
+  <button class="btn" onclick="location.href='s16.html'">
+    Jsem v tunelu!
+  </button>
 
 </div>
 
