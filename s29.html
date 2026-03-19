@@ -1,9 +1,14 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stojíte čelem ke schodům?</title>
+<title>Stojíte čelem ke schjodům?</title>
 
 <style>
 body{
@@ -23,10 +28,7 @@ body{
   80% { transform: translate(8px, -5px); }
   100% { transform: translate(0, 0); }
 }
-
-.shake {
-  animation: shake 0.4s;
-}
+.shake { animation: shake 0.4s; }
 
 .wrap{
   min-height:100vh;
@@ -102,19 +104,17 @@ button{
   font-weight:bold;
 }
 
+/* fail overlay (obrázek přes celou obrazovku) */
 #failScreen{
   display:none;
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  top:0; left:0;
+  width:100%; height:100%;
   background:black;
   justify-content:center;
   align-items:center;
   z-index:9999;
 }
-
 #failScreen img{
   max-width:90%;
   max-height:90%;
@@ -124,35 +124,39 @@ button{
 
 <body>
 
+<!-- sem patří failScreen (HTML), ne do <style> -->
 <div id="failScreen">
   <img src="spatnyheslo3.png" alt="Špatný heslo, břídilové">
 </div>
 
 <div class="wrap">
 
-  <img class="logo" src="bezpozadi.png" alt="Logo">
+<img class="logo" src="bezpozadi.png" alt="Logo">
 
-  <div class="card">
-    <h2></h2>
+<div class="card">
+    <h2> </h2>
 
-    <p>
-      Tato socha ukrývá známou píseň,<br>
+
+<p>
+     Tato socha ukrývá známou píseň,<br>
       A pokud už taky máte žízeň,<br>
       Rychle song hledejte,<br>
       správný název vám teď jen najít stačí.<br>
       <br>
       Je tam....<br>
       Vévodo české země...<br>
-    </p>
 
-    <input type="text" id="heslo" placeholder="Zadejte heslo">
-    <button onclick="check()">Odeslat</button>
+  <br>
+</p>
 
-    <button class="btn2" onclick="nextHint()">V případě intelektuálního kolapsu</button>
-    <div id="hintBox" class="hintBox"></div>
+<input type="text" id="heslo" placeholder="Zadejte heslo">
+<button onclick="check()">Odeslat</button>
 
-    <div id="msg"></div>
-  </div>
+<button class="btn2" onclick="nextHint()">V případě intelektuálního kolapsu</button>
+<div id="hintBox" class="hintBox"></div>
+
+<div id="msg"></div>
+</div>
 
 </div>
 
@@ -166,27 +170,24 @@ function normalize(text){
 
 function triggerShake(){
   document.body.classList.add("shake");
-  setTimeout(function () {
-    document.body.classList.remove("shake");
-  }, 400);
+  setTimeout(() => document.body.classList.remove("shake"), 400);
 }
 
 function showFail(){
   const screen = document.getElementById("failScreen");
   screen.style.display = "flex";
-  setTimeout(function () {
-    screen.style.display = "none";
-  }, 2000);
+  setTimeout(() => { screen.style.display = "none"; }, 2000);
 }
 
 function check(){
   const val = normalize(document.getElementById("heslo").value);
 
-  if(val === "svatovaclavsky choral"){
+  if(val === "svatovaclavsky choral"){ // <-- sem dej správné heslo
     window.location.href = "s30.html";
     return;
   }
 
+  // špatně:
   wrongAttempts++;
   document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
   triggerShake();
@@ -202,20 +203,19 @@ function nextHint(){
   box.style.display = "block";
 
   if(hintStep === 0){
-    box.innerHTML = '💡 Nápověda 1: Rýmuje se to se slovem „orál“';
+    box.innerHTML = "💡 Nápověda 1: Rýmuje se to se slovem oral";
     hintStep++;
   } else if(hintStep === 1){
-    box.innerHTML = "💡 Nápověda 2: Kdo sedí na koni? Udělejte z toho adjektivum!";
+    box.innerHTML = "💡 Nápověda 2:Kdo je na koni? Udělejte z toho adjektivum";
     hintStep++;
   } else {
     box.innerHTML = "😈 Víc nápověd není.";
   }
 }
 
+// Enter = odeslat
 document.getElementById("heslo").addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    check();
-  }
+  if(e.key === "Enter") check();
 });
 </script>
 
