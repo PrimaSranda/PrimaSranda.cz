@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stojíte čelem ke schodům?</title>
+
+<style>
+body{
+  margin:0;
+  min-height:100vh;
+  background: radial-gradient(circle at center, #1a0000 0%, #000 70%);
+  font-family: Arial, sans-serif;
+  color:#fff;
+}
+
+/* třes stránky */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 5px); }
+  40% { transform: translate(8px, -5px); }
+  60% { transform: translate(-8px, 5px); }
+  80% { transform: translate(8px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+.shake { animation: shake 0.4s; }
+
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:24px 16px;
+  gap:14px;
+}
+
+.logo{
+  width:min(70vw,320px);
+  height:auto;
+  filter:drop-shadow(0 0 20px rgba(255,0,0,.9));
+}
+
+.card{
+  width:min(90vw,420px);
+  background:rgba(0,0,0,.35);
+  border:1px solid rgba(255,0,0,.5);
+  border-radius:14px;
+  padding:20px;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border-radius:10px;
+  border:1px solid rgba(255,0,0,.6);
+  background:#111;
+  color:white;
+  font-size:16px;
+  box-sizing:border-box;
+}
+
+button{
+  margin-top:12px;
+  padding:12px 20px;
+  background:red;
+  border:none;
+  border-radius:10px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.btn2{
+  margin-top:10px;
+  padding:12px 18px;
+  border-radius:12px;
+  border:1px solid rgba(255,0,0,.6);
+  background:rgba(255,0,0,.15);
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.hintBox{
+  margin-top:12px;
+  padding:12px;
+  border-radius:12px;
+  border:1px dashed rgba(255,0,0,.5);
+  background:rgba(0,0,0,.4);
+  text-align:left;
+  display:none;
+}
+
+#msg{
+  margin-top:12px;
+  font-weight:bold;
+}
+
+/* fail overlay */
+#failScreen{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:black;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+#failScreen img{
+  max-width:90%;
+  max-height:90%;
+}
+
+/* popup pro první nápovědu */
+#hintPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  justify-content:center;
+  align-items:center;
+  z-index:9998;
+}
+
+#hintPopupBox{
+  background:rgba(20,0,0,0.95);
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(255,0,0,.6);
+  box-shadow:0 0 25px rgba(255,0,0,.35);
+}
+
+#hintPopupBox img{
+  width:min(85vw,420px);
+  max-height:80vh;
+  display:block;
+  border-radius:10px;
+}
+
+#hintPopupText{
+  margin-top:10px;
+  font-size:14px;
+  opacity:.9;
+}
+</style>
+</head>
+
+<body>
+
+<div id="failScreen">
+  <img src="spatnyheslo3.png" alt="Špatný heslo, břídilové">
+</div>
+
+<!-- popup pro obrázek první nápovědy -->
+<div id="hintPopup" onclick="hideHintPopup()">
+  <div id="hintPopupBox" onclick="event.stopPropagation()">
+    <img src="rim.PNG" alt="Nápověda">
+    <div id="hintPopupText">Klikněte mimo obrázek pro zavření</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <img class="logo" src="bezpozadi.png" alt="Logo">
+
+  <div class="card">
+    <h2></h2>
+
+    <p>
+     Nedaleko socha stojí,<br>
+     Národní ulice stále vede cestu Tvojí,<br>
+    teď bude potřeba specialista, <br>
+      moderní češtinu zavedl tento lingvista!<br>
+    A národní obrození vedl hrdinsky, <br>
+     přihlaste se, kdo umíte římsky?<br>
+
+      <br>
+    </p>
+
+    <input type="text" id="heslo" placeholder="Zadejte heslo">
+    <button onclick="check()">Odeslat</button>
+
+    <button class="btn2" onclick="nextHint()">V případě intelektuálního kolapsu</button>
+    <div id="hintBox" class="hintBox"></div>
+
+    <div id="msg"></div>
+  </div>
+
+</div>
+
+<script>
+let wrongAttempts = 0;
+let hintStep = 0;
+
+function normalize(text){
+  return (text || "")
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function triggerShake(){
+  document.body.classList.add("shake");
+  setTimeout(() => document.body.classList.remove("shake"), 400);
+}
+
+function showFail(){
+  const screen = document.getElementById("failScreen");
+  screen.style.display = "flex";
+  setTimeout(() => { screen.style.display = "none"; }, 2000);
+}
+
+function showHintPopup(){
+  document.getElementById("hintPopup").style.display = "flex";
+}
+
+function hideHintPopup(){
+  document.getElementById("hintPopup").style.display = "none";
+}
+
+function check(){
+  const val = normalize(document.getElementById("heslo").value);
+
+  if(val === "david cerny"){
+    window.location.href = "s27.html";
+    return;
+  }
+
+  wrongAttempts++;
+  document.getElementById("msg").innerHTML = "❌ Špatné heslo.";
+  triggerShake();
+  showFail();
+
+  if(wrongAttempts >= 2){
+    document.getElementById("msg").innerHTML += "<br><span style='color:#ff9999'>Potřebujete nápovědu?</span>";
+  }
+}
+
+function nextHint(){
+  const box = document.getElementById("hintBox");
+  box.style.display = "block";
+
+  if(hintStep === 0){
+    box.innerHTML = "💡 Nápověda 1 otevřena.";
+    showHintPopup();
+    hintStep++;
+  } else if(hintStep === 1){
+    box.innerHTML = "💡 Nápověda 2 otevřena v nové záložce.";
+    window.open("https://www.hackmath.net/cz/kalkulacka/rimska-cisla", "_blank");
+    hintStep++;
+  } else {
+    box.innerHTML = "😈 Víc nápověd není.";
+  }
+}
+
+// Enter = odeslat
+document.getElementById("heslo").addEventListener("keydown", function(e){
+  if(e.key === "Enter") check();
+});
+</script>
+
+</body>
+</html>
