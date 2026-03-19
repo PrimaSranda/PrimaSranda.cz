@@ -145,8 +145,9 @@ avšak i tak vám děkujeme za potvrzení!<br>
   tam najdeš svého dalšího úkolu. <br>
   Tvá cesta vede kolem Vyšehradu,<br>
   Ty však prokračuj kolem něj až dozadu!<br>
+  <br>
 
-  Tak co, víte?<br>
+  A vaše další zástavka je....<br>
 
   <br>
 </p>
@@ -154,8 +155,7 @@ avšak i tak vám děkujeme za potvrzení!<br>
 <input type="text" id="heslo" placeholder="Zadejte heslo">
 <button onclick="check()">Odeslat</button>
 
-<button class="btn2" onclick="nextHint()">V případě intelektuálního kolapsu</button>
-<div id="hintBox" class="hintBox"></div>
+
 
 <div id="msg"></div>
 </div>
@@ -185,7 +185,7 @@ function check(){
   const val = normalize(document.getElementById("heslo").value);
 
   if(val === "manes"){ // <-- sem dej správné heslo
-    window.location.href = "s18.html";
+    window.location.href = "s22.html";
     return;
   }
 
