@@ -98,19 +98,14 @@ h1{
     </p>
   </div>
 
-
+  <button class="btn" onclick="location.href='s31.html'">
+    Až všichni usedneme, naposled se proklikneme
   </button>
-
-
 
 </div>
 
 <script>
 const colors = ["#ff004c", "#00eaff", "#ffd500", "#00ff88", "#ffffff"];
-  
-   <button onclick="location.href='S31.html'">
-    Až všichni usedneme, naposled se proklikneme
-  </button>
 
 function createConfetti(){
   const conf = document.createElement("div");
@@ -124,7 +119,6 @@ function createConfetti(){
   setTimeout(() => conf.remove(), 6000);
 }
 
-// vytvoří hodně konfet najednou
 for(let i=0;i<120;i++){
   setTimeout(createConfetti, i * 50);
 }
