@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +60,37 @@ button{
 button:active{
   transform:scale(0.97);
 }
+
+/* popup */
+#qrPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.82);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+#qrBox{
+  background:rgba(20,0,0,0.95);
+  padding:20px;
+  border-radius:16px;
+  border:1px solid rgba(255,0,0,.6);
+  box-shadow:0 0 25px rgba(255,0,0,.35);
+}
+
+#qrBox img{
+  width:min(80vw,260px);
+  display:block;
+  border-radius:10px;
+}
+
+#qrText{
+  margin-top:12px;
+  font-size:14px;
+  opacity:.85;
+}
 </style>
 </head>
 
@@ -72,29 +101,48 @@ button:active{
   <img class="logo" src="bezpozadi.png" alt="Logo">
 
   <div class="card">
-    <h2> 🧭</h2>
+    <h2>🧭</h2>
 
     <p>
-     Teď na sever se vydejte, 200m ujděte,<br>
-     až na první zebru narazíte, přes její hřbet přejděte.<br>
+      Teď na sever se vydejte, 200m ujděte,<br>
+      až na první zebru narazíte, přes její hřbet přejděte.<br>
       další zebra opět na sever ukáže vám cestu, <br>
       a díky ní víte směr na dalších 80 metrů!<br>
-     Hle! dvě zebry blízko sebe,<br>
+      Hle! dvě zebry blízko sebe,<br>
       vás ovšem zajímá zas směr sever!<br>
       Po schodech se vydáte, <br>
       a uprostřed náměstí se ocitáte!
-      
       <br><br>
-
-      
     </p>
   </div>
 
   <button onclick="location.href='s24.html'">
-   Jsme zde
+    Jsme zde
+  </button>
+
+  <button onclick="showQR()">
+    Orientační kolaps
   </button>
 
 </div>
+
+<!-- popup s QR -->
+<div id="qrPopup" onclick="hideQR()">
+  <div id="qrBox" onclick="event.stopPropagation()">
+    <img src="qr3.png" alt="QR nápověda">
+    <div id="qrText">Klikněte mimo QR pro zavření</div>
+  </div>
+</div>
+
+<script>
+function showQR(){
+  document.getElementById("qrPopup").style.display = "flex";
+}
+
+function hideQR(){
+  document.getElementById("qrPopup").style.display = "none";
+}
+</script>
 
 </body>
 </html>
